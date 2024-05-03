@@ -154,6 +154,7 @@ task GenotypeGVCFs {
 
     Boolean keep_combined_raw_annotations = false
     String? additional_annotation
+    Int? max_genotype_count
 
     Int disk_size_gb
     Int machine_mem_mb = 26000
@@ -184,6 +185,7 @@ task GenotypeGVCFs {
       -V gendb://$WORKSPACE \
       -L ~{interval} \
       ~{"-A " + additional_annotation} \
+      ~{"--max-genotype-count " + max_genotype_count} \
       ~{true='--allow-old-rms-mapping-quality-annotation-data' false='' allow_old_rms_mapping_quality_annotation_data} \
       ~{true='--keep-combined-raw-annotations' false='' keep_combined_raw_annotations} \
       --merge-input-intervals
